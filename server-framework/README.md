@@ -31,7 +31,7 @@ Chats[
     ],
     "chat": [
       {
-        "message": "Test"
+        "message": "Test",
         "username": "testuser"
       }
     ],
@@ -60,7 +60,9 @@ Chats[
     }
   }
 ]
+```
 
+```json
 Users[
   {
     name: "Mark",
