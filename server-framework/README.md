@@ -1,4 +1,5 @@
 # An idea for a new server framework
+This is an idea for a server framework fully focused on NOT static content and NO server side framework.
 
 ## Server & database
 server: Golang  
@@ -13,44 +14,44 @@ database: mongodb
 ```json
 Chats[
   {
-    between: [
+    "between": [
       {
-        name: "Mark",
-        username: "testuser",
-        email: "some-email@gmail.com",
-        premissions: [
+        "name": "Mark",
+        "username": "testuser",
+        "email": "some-email@gmail.com",
+        "premissions": [
           "admin",
           "user"
         ]
       }, {
-        ...
+        "-": "..."
       }
     ],
-    chat: [
+    "chat": [
       {
-        message: "Test"
-        username: "testuser"
+        "message": "Test"
+        "username": "testuser"
       }
     ],
-    link: {
-      between: "Users",
-      chat: {username: "Users/username"}
+    "link": {
+      "between": "Users",
+      "chat": {"username": "Users/username"}
     },
-    premissions: {
-      view: {
-        HOST: [
+    "premissions": {
+      "view": {
+        "HOST": [
           "user:testuser"
           "admin"
         ]
       },
-      eddit: {
-        HOST: [
+      "eddit": {
+        "HOST": [
           "user:testuser"
           "admin"
         ]
       },
-      remove: {
-        HOST: [
+      "remove": {
+        "HOST": [
           "admin"
         ]
       }
@@ -93,7 +94,7 @@ Res: [
 GET: /chats (with auth "admin")
 Res: [
   {
-    between: [
+    "between": [
       {
         name: "Mark",
         username: "testuser",
@@ -116,9 +117,9 @@ Res: [
 ]
 
 // Request only ... (based on graphql so only filtering on the user side)
-POST /chats/first
+POST /chats
 POSTDATA: {
-  what: `
+  what: `(first)
     between {
       username
     }
@@ -135,7 +136,26 @@ RES: [
     ]
   }
 ]
+
+// edit username
+POST /users/edit
+POSTDATA: {
+  what: `(username=CurrentUserName, first)`
+  tochange: {
+    username: NewUserName
+  }
+}
+
+// remove chat
+POST /users/remove
+POSTDATA: {
+
+}
 ```
+
+## Editing data
+The server will check for links and collect all data that may needs to be changed  
+After collecting all data it wil change all the data  
 
 ## Auth
 Because the user may want to inplement there own version of auth i want them to to add / remove / edit easly.  
@@ -148,9 +168,9 @@ An example
 ```
 // because of the previous addition it doesn't return the username
 // the username will be added again on the user's side
-POST /chats/first
+POST /chats
 POSTDATA: {
-  what: `
+  what: `(first)
     between {
       username,
       email
