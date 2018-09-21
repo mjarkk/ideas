@@ -140,3 +140,39 @@ RES: [
 ## Auth
 Because the user may want to inplement there own version of auth i want them to to add / remove / edit easly.  
 
+## Real time data
+Based on the user session ID it will send rests of data and updates (maybe also predictable requesting of data)
+
+## Sending extra information
+An example
+```
+// because of the previous addition it doesn't return the username
+// the username will be added again on the user's side
+POST /chats/first
+POSTDATA: {
+  what: `
+    between {
+      username,
+      email
+    }
+  `,
+  previous: [
+    `
+      between {
+        email
+      }
+    `
+  ]
+}
+RES: [
+  {
+    between: [
+      {
+        email: "some-email@gmail.com"
+      }, {
+        email: ...
+      }
+    ]
+  }
+]
+```
