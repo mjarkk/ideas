@@ -65,16 +65,16 @@ Chats[
 ```json
 Users[
   {
-    name: "Mark",
-    username: "testuser",
-    email: "some-email@gmail.com",
-    premissions: [
+    "name": "Mark",
+    "username": "testuser",
+    "email": "some-email@gmail.com",
+    "premissions": [
       "admin",
       "user"
     ]
-    link: {
-      HOST: "Chats/between"
-      username: "Chats/chat/username"
+    "link": {
+      "HOST": "Chats/between",
+      "username": "Chats/chat/username"
     }
   }
 ]
