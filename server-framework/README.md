@@ -6,6 +6,8 @@ server: Golang
 database: mongodb
 
 ## Some demo sets
+Here are 2 sets of data for mongodb
+
 - `someName[` means a database  
 - `Link: {` is not to link data to an object but more to shows if there are object copied to make it easier to eddit later
 - `Link -> HOST` is the main document
